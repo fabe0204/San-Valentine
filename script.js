@@ -7,17 +7,23 @@
     }
 
     // Detecta el ancho de la ventana si es menor al tamaño original
-var width = $(window).width() < 1100 ? $(window).width() : canvas.width();
-var height = $(window).height() < 680 ? $(window).height() : canvas.height();
-
+var width = $(window).width();
+    var height = $(window).height();
+// Si es PC, limitamos para que el árbol no se estire demasiado
+    if (width > 1100) {
+        width = 1100;
+        height = 680;
+    }
+    
+    // Ajustamos el canvas al tamaño detectado
     canvas.attr("width", width);
-    canvas.attr("height", height);
+    canvas.attr("height", height);;
 
     var opts = {
         seed: {
             x: width / 2 - 20,
             color: "rgb(190, 26, 37)",
-            scale: 2
+            scale: width < 500 ? 1 : 2 // Semilla más pequeña en móviles
         },
         branch: [
             [535, 680, 570, 250, 500, 200, 30, 100, [
