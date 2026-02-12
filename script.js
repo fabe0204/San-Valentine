@@ -6,8 +6,9 @@
         return false;
     }
 
-    var width = canvas.width();
-    var height = canvas.height();
+    // Detecta el ancho de la ventana si es menor al tamaño original
+var width = $(window).width() < 1100 ? $(window).width() : canvas.width();
+var height = $(window).height() < 680 ? $(window).height() : canvas.height();
 
     canvas.attr("width", width);
     canvas.attr("height", height);
